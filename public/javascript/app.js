@@ -192,3 +192,73 @@ function signUp() {
 }
 
 //option : Log in;
+
+function login() {
+    // email
+    let email = prompt("enter your email")
+    let userfound = null
+    for ( let user of bank.users) {
+        if (user.email === email){
+            userfound = user
+            break
+        }
+    }
+
+    if (!userfound) {
+        alert("No user found with this " + (email))
+        return
+    }
+    alert("the email is saved")
+
+    let password = prompt("enter the password")
+    if (userfound.password === password){
+        alert("login successfully")
+
+        let loggedUeser = new User(
+            userfound.fullName,
+            userfound.email,
+            userfound.age,
+            userfound.password,
+            userfound.balance,
+        )
+
+        alert("Welcome back " + (loggedUeser.fullName))
+
+        if (email === User.email && password === User.password){
+            alert("Welcome back " + (loggedUeser.fullName))
+            console.log("User logged in : " + (loggedUeser.email));
+            
+        }
+        let action 
+        do {
+            action = prompt("choose an action : \n1. check balance\n2. Deposit money \n3. Withdraw money\n4. Logout")
+
+            switch (action) {
+                case "1" :
+                    loggedUeser.displaybalance()
+                    break
+                case "2" :
+                    let depositAmount = parseFloat(prompt("enter amount to deposit : "))
+                    loggedUeser.deposit(depositAmount)
+                    break
+                case "3" :
+                    let withDrawAmount = parseFloat(prompt("enter amount to withdraw"))
+                    loggedUeser.withdrawl(withDrawAmount)
+                    break
+                case "4" :
+                    alert("logged out successfully")
+                    break
+                default :
+                    alert("Invalid option. Please try again.")
+                    break
+
+            }
+        } while ( action !== "4")
+
+    } else {
+        alert("Incorrect password")
+    }
+  console.log("User logged in : " +(email));
+  
+}
+
