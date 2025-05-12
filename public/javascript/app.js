@@ -143,11 +143,50 @@ function signUp() {
     } 
     alert("your age is saved : " + age)
 
-    // 
+    // password
+    
+    let password = prompt("Enter a password")
+    if(!password) {
+        alert("enter a valid password")
+        return
+    }
+    password = password.trim()
 
+    if (password.includes(" ")) {
+        alert("the password should not contain space")
+        return
+    }
 
+    //requiring at least one character
 
+    let specialChar = /[#@\-+\*/]/.test(password)
+    if (!specialChar) {
+        alert("password must contain at least one special character ")
+        return  
+    }
 
+    // confirmation the password
+
+    let confirmPassword
+    do {
+        confirmPassword = prompt("confrim your password")
+        if(password !== confirmPassword) {
+            alert("password doesn't match")
+        }
+    } while (password !== confirmPassword)
+        alert("password accepted: " + password)
+
+        bank.users.push({
+            fullName : fullName,
+            email : email,
+            age : age,
+            password : password,
+            balance : 400,
+        })
+        alert("Registration complete!")
+
+        console.log("User registered : " + (fullName), + "Email : " + (email), + "Age : " + (age));
+        
 
     
 }
