@@ -263,3 +263,57 @@ function login() {
 }
 
 // option changing password 
+
+function change_password(){
+    // email
+    let email = prompt("enter your email")
+    for (let index = 0; index < bank.users.length; index++){
+        for(let user of bank.users) {
+            if(user.email === email){
+                userfound = user
+                break
+            }
+        }
+    }
+    if (userfound) {
+        userfound.password = password
+        alert("password changed")
+        console.log("password changed for : " + (userfound.email));
+        
+    }
+    if(!userfound){
+        alert("no user found with this " + (email))
+        return
+    }
+    let password = prompt("Enter a password ")
+    if (!password){
+        alert("Enter a valid password")
+        return password 
+    }
+    password = password.trim()
+
+    // space in the middle
+    if (password.includes(" ")){
+        alert("password must contain at least one special character ")
+        return password
+    }
+
+    //requiring at least one character
+    const specialChar = /[#@\-+\*/]/.test(password);
+    if (!specialChar) {
+        alert("password must contain at least one special character");
+        return password;
+    }
+
+    // confiramtion the password   
+    
+    let confirmPassword
+    do {
+        confirmPassword = prompt("confirm your password ")
+        if(password !== confirmPassword){
+            alert("password doesn't match")
+        }
+    } while (password !== confirmPassword)
+        alert("password accepted : " + password )
+
+}
