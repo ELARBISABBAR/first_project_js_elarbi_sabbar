@@ -317,3 +317,37 @@ function change_password(){
         alert("password accepted : " + password )
 
 }
+
+// the classes : bank, loan, investement
+
+class User {
+    constructor(fullName, email, age, password, balance){
+        this.fullName = fullName
+        this.email = email
+        this.age = age
+        this.password = password
+        this.balance = balance
+    }
+
+    withdrawl(amount){
+        if(amount <= this.balance){
+            this.balance -= amount
+            console.log("withdraw : " + (amount));
+            
+        } else {
+            console.log("want to withdraw : $ " + (amount));
+            console.log("insufficient balance");  
+        }
+    }
+    displaybalance() {
+        console.log("account balance : $ " + (this.balance));
+        
+    }
+    deposit(amount){
+        this.balance += amount
+        console.log("deposited : $ " + (amount));
+        
+    }
+}
+
+checkin()
