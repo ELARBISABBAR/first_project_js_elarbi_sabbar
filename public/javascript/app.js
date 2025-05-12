@@ -65,7 +65,57 @@ function signUp() {
 
     //*Email:
     let email
-    let validEmail = false
+    let validEmail = 
+    
+    while (!validEmail) {
+        email = prompt("Enter an E-mail")
+
+        // if email is empty
+        if (!email) {
+            alert(" the option is Empty ! Please enter your email.")
+            return
+        }
+
+        // remove spaces and convert to lowercase
+        email = email.trim().toLowerCase()
+
+        //check for exactly one "@"
+        if (!email.includes("@") || email.split("@").length !==2){
+            alert("the email should contain one '@'. ")
+            continue
+        }
+        // check for spaces inside the email
+        if(email.includes(" ")) {
+            alert("Your email contains spaces. Please enter a valid email.")
+            continue
+        }
+
+        // check email length
+        if (email.length < 10) {
+            alert("Email must contain more than 10 characters. ")
+            continue
+        }
+
+        // check uniqueness of email
+
+        let uniqueEmail = true
+        for(let user of bank.users){
+            if(user.email === email){
+            uniqueEmail = false
+            break
+            }
+        }
+
+        if(!uniqueEmail) {
+            alert("This email is already used. Enter a new one")
+            continue
+        }
+
+        // if all checks pass 
+        validEmail = true
+        alert("Email registred: " + email)
+
+    }
 
     
 }
