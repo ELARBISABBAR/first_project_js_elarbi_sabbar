@@ -65,10 +65,10 @@ function signUp() {
 
     //*Email:
     let email
-    let validEmail = 
-    
-    while (!validEmail) {
-        email = prompt("Enter an E-mail")
+    let validEmail = false
+
+    while (!validEmail){
+                email = prompt("Enter an E-mail")
 
         // if email is empty
         if (!email) {
@@ -116,6 +116,38 @@ function signUp() {
         alert("Email registred: " + email)
 
     }
+
+    //Age
+
+    let age = prompt("enter your age")
+    if (!age) {
+        alert("the option is Empty ! Please enter your age")
+        return
+    }
+    
+    age = age.trim()
+
+    let noDigit = false
+    for(let index = 0; index < age.length; index++){
+        if ( isNaN(age[index])) {
+            noDigit = true
+            break
+        }
+    }
+
+    if(noDigit) {
+        alert("too many characters")
+        return
+    }else if (age.length > 3 ) {
+        alert("it shouldn't have more than 2 digits")
+    } 
+    alert("your age is saved : " + age)
+
+    // 
+
+
+
+
 
     
 }
