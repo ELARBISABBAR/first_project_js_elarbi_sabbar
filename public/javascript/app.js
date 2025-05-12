@@ -326,7 +326,7 @@ class User {
         this.email = email
         this.age = age
         this.password = password
-        this.balance = balance
+        this.balance = 1000
     }
 
     withdrawl(amount){
